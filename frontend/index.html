@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Décimas</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f5f0eb; color: #333; }
+
+    header {
+      background: #92400e;
+      color: #fff;
+      padding: 16px 24px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.6rem; }
+
+    main { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+
+    section { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+
+    h2 { font-size: 1.1rem; margin-bottom: 14px; color: #92400e; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: #92400e; color: #fff; padding: 10px 8px; text-align: left; }
+    td { padding: 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fef3c7; }
+
+    .btn { padding: 6px 14px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
+    .btn-primary { background: #92400e; color: #fff; }
+    .btn-primary:hover { background: #78350f; }
+    .btn-danger { background: #dc2626; color: #fff; }
+    .btn-danger:hover { background: #b91c1c; }
+    .btn-secondary { background: #6b7280; color: #fff; }
+    .btn-secondary:hover { background: #4b5563; }
+
+    form label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 4px; margin-top: 10px; }
+    form input, form textarea {
+      width: 100%; padding: 8px; border: 1px solid #d1d5db;
+      border-radius: 4px; font-size: 0.9rem;
+    }
+    form textarea { resize: vertical; height: 100px; }
+    .form-actions { margin-top: 14px; display: flex; gap: 8px; }
+
+    #status { margin-bottom: 12px; font-size: 0.85rem; color: #6b7280; }
+    .contenido-cell { max-width: 220px; white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gestor de Décimas</h1>
+    <p>Microservicio en Amazon EKS</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Décimas registradas</h2>
+      <p id="status">Cargando...</p>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Contenido</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyDecimas"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2 id="formTitle">Nueva décima</h2>
+      <form id="formDecima" onsubmit="return false;">
+        <label for="inputTitulo">Título</label>
+        <input type="text" id="inputTitulo" placeholder="Título de la décima" maxlength="100" />
+
+        <label for="inputAutor">Autor</label>
+        <input type="text" id="inputAutor" placeholder="Nombre del autor" maxlength="100" />
+
+        <label for="inputContenido">Contenido (10 versos)</label>
+        <textarea id="inputContenido" placeholder="Escribe aquí los 10 versos..."></textarea>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" id="btnGuardar" onclick="guardarDecima()">Guardar</button>
+          <button class="btn btn-secondary" id="btnCancelar" onclick="limpiarFormulario()">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: decimas-backend
+  namespace: decimas
+spec:
+  selector:
+    app: decimas-backend
+  ports:
+    - protocol: TCP
+      port: 3001
+      targetPort: 3001
+  type: ClusterIP
