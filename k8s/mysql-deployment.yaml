@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: <ECR_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/decimas-db
+          image: mysql:8.0
           ports:
             - containerPort: 3306
           env:
@@ -27,6 +27,11 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
+            - name: initdb
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: data
           emptyDir: {}
+        - name: initdb
+          configMap:
+            name: mysql-initdb
